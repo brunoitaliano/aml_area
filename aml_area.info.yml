@@ -1,0 +1,5 @@
+name: 'aml area'
+type: module
+description: 'An area description tool'
+package: Custom
+core_version_requirement: ^10 || ^11
