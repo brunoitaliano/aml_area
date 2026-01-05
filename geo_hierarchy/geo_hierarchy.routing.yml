@@ -1,0 +1,7 @@
+geo_hierarchy.geo_node_collection:
+  path: '/admin/content/geo-node'
+  defaults:
+    _entity_list: 'geo_node'
+    _title: 'Geo nodes'
+  requirements:
+    _permission: 'administer geo hierarchy'
