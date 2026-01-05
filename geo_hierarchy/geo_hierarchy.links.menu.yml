@@ -1,0 +1,7 @@
+geo_hierarchy.geo_node_collection:
+  title: 'Geo nodes'
+  description: 'Manage geographic hierarchy items.'
+  route_name: entity.geo_node.collection
+  parent: system.admin_content
+  weight: 20
+  permission: 'administer geo hierarchy'
