@@ -1,0 +1,5 @@
+entity.geo_node.add_form:
+  route_name: entity.geo_node.add_form
+  title: 'Add Geo node'
+  appears_on:
+    - entity.geo_node.collection

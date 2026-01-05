@@ -6,54 +6,53 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityOwnerInterface;
-use Drupal\Core\Entity\EntityOwnerTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-
-#[\Drupal\Core\Entity\Attribute\ContentEntityType(
-  id: 'geo_node',
-  label: new TranslatableMarkup('Geo Node'),
-  label_collection: new TranslatableMarkup('Geo Nodes'),
-  handlers: [
-    'list_builder' => 'Drupal\\Core\\Entity\\EntityListBuilder',
-    'views_data' => 'Drupal\\views\\EntityViewsData',
-    'access' => 'Drupal\\Core\\Entity\\EntityAccessControlHandler',
-    'form' => [
-      'default' => 'Drupal\\Core\\Entity\\ContentEntityForm',
-      'add' => 'Drupal\\Core\\Entity\\ContentEntityForm',
-      'edit' => 'Drupal\\Core\\Entity\\ContentEntityForm',
-      'delete' => 'Drupal\\Core\\Entity\\ContentEntityDeleteForm',
-    ],
-  ],
-  base_table: 'geo_node',
-  data_table: 'geo_node_field_data',
-  translatable: true,
-  fieldable: true,
-  admin_permission: 'administer geo hierarchy',
-  entity_keys: [
-    'id' => 'id',
-    'uuid' => 'uuid',
-    'label' => 'name',
-    'uid' => 'uid',
-    'status' => 'status',
-    'langcode' => 'langcode',
-  ],
-  indexes: [
-    'geo_node_type_parent' => ['type', 'parent_target_id'],
-  ],
-  links: [
-    'canonical' => '/admin/content/geo-node/{geo_node}',
-    'add-form' => '/admin/content/geo-node/add',
-    'edit-form' => '/admin/content/geo-node/{geo_node}/edit',
-    'delete-form' => '/admin/content/geo-node/{geo_node}/delete',
-    'collection' => '/admin/content/geo-node',
-  ],
-  field_ui_base_route: 'entity.geo_node.collection',
-)]
-class GeoNode extends ContentEntityBase implements ContentEntityInterface, EntityOwnerInterface, EntityChangedInterface {
-  use EntityOwnerTrait;
+/**
+ * Defines the Geo node entity.
+ *
+ * @ContentEntityType(
+ *   id = "geo_node",
+ *   label = @Translation("Geo Node"),
+ *   label_collection = @Translation("Geo Nodes"),
+ *   handlers = {
+ *     "list_builder" = "Drupal\Core\Entity\EntityListBuilder",
+ *     "views_data" = "Drupal\views\EntityViewsData",
+ *     "access" = "Drupal\Core\Entity\EntityAccessControlHandler",
+ *     "form" = {
+ *       "default" = "Drupal\Core\Entity\ContentEntityForm",
+ *       "add" = "Drupal\Core\Entity\ContentEntityForm",
+ *       "edit" = "Drupal\Core\Entity\ContentEntityForm",
+ *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm"
+ *     },
+ *     "route_provider" = {
+ *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider"
+ *     }
+ *   },
+ *   base_table = "geo_node",
+ *   data_table = "geo_node_field_data",
+ *   translatable = TRUE,
+ *   fieldable = TRUE,
+ *   admin_permission = "administer geo hierarchy",
+ *   entity_keys = {
+ *     "id" = "id",
+ *     "uuid" = "uuid",
+ *     "label" = "name",
+ *     "status" = "status",
+ *     "langcode" = "langcode"
+ *   },
+ *   links = {
+ *     "canonical" = "/admin/content/geo-node/{geo_node}",
+ *     "add-form" = "/admin/content/geo-node/add",
+ *     "edit-form" = "/admin/content/geo-node/{geo_node}/edit",
+ *     "delete-form" = "/admin/content/geo-node/{geo_node}/delete",
+ *     "collection" = "/admin/content/geo-node"
+ *   },
+ *   field_ui_base_route = "entity.geo_node.collection"
+ * )
+ */
+class GeoNode extends ContentEntityBase implements ContentEntityInterface, EntityChangedInterface {
   use EntityChangedTrait;
 
   /**
@@ -155,17 +154,6 @@ class GeoNode extends ContentEntityBase implements ContentEntityInterface, Entit
       ->setDisplayOptions('form', [
         'type' => 'string_textfield',
         'weight' => -1,
-      ])
-      ->setDisplayConfigurable('form', true)
-      ->setDisplayConfigurable('view', true);
-
-    $fields['uid'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(new TranslatableMarkup('Authored by'))
-      ->setSetting('target_type', 'user')
-      ->setDefaultValueCallback(static::class . '::getCurrentUserId')
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 10,
       ])
       ->setDisplayConfigurable('form', true)
       ->setDisplayConfigurable('view', true);

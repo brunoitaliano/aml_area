@@ -1,7 +1,7 @@
-geo_hierarchy.geo_node_collection:
+entity.geo_node.collection:
   path: '/admin/content/geo-node'
   defaults:
-    _entity_list: 'geo_node'
-    _title: 'Geo nodes'
+    _controller: '\Drupal\Core\Entity\Controller\EntityListController::listing'
+    entity_type: 'geo_node'
   requirements:
     _permission: 'administer geo hierarchy'
