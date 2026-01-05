@@ -1,0 +1,5 @@
+name: 'Geo Hierarchy'
+type: module
+description: 'Provides a hierarchical geography entity and widgets.'
+package: Custom
+core_version_requirement: ^10 || ^11
