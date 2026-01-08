@@ -1,0 +1,34 @@
+{
+  "country": {
+    "name": "Spain",
+    "type": "country",
+    "iso_code": "ES",
+    "children": [
+      {
+        "name": "Andalusia",
+        "type": "region",
+        "children": [
+          {
+            "name": "Málaga",
+            "type": "province",
+            "children": [
+              {
+                "name": "Nerja",
+                "type": "municipality",
+                "children": [
+                  { "name": "Centro / Balcón de Europa", "type": "zone" },
+                  { "name": "La Torrecilla", "type": "zone" },
+                  { "name": "El Chaparil", "type": "zone" },
+                  { "name": "Burriana", "type": "zone" },
+                  { "name": "Punta Lara", "type": "zone" },
+                  { "name": "El Capistrano", "type": "zone" },
+                  { "name": "Maro", "type": "zone" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
